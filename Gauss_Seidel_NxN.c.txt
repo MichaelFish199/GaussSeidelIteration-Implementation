@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+#define rozmiar 4   //trzeba manualnie zmieniać rozmiar dla n elementowej macierzy
+int main(){
+
+    int i,j,k;
+    double d;
+    double macierz[rozmiar][rozmiar] = {};
+    double rownosci[rozmiar] = {};
+    char argumenty[] = {'x','y','z','w','v','u','t','s','r','q'};
+    double x[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+//////////////////////////////////////////////////////////////////////////////
+                                                                            //
+    for(i = 0; i < rozmiar; i++){                                           //
+        printf("\n");                                                       //
+        for(j = 0; j < rozmiar; j++){                                       //
+            printf("podaj liczbe w macierzy na pozycji %d %d: ", i, j);     //
+            scanf("%lf", &macierz[i][j]);}}                                 //
+                                                                            //  Tworzenie Macierzy z Rownosciami
+                                                                            //
+     for(i = 0; i < rozmiar; i++){                                          //
+        printf("\n podaj czemu jest rowny wiersz macierzy nr %d: ", i+1);   //
+        scanf("%lf", &rownosci[i]);}                                        //
+                                                                            //
+//////////////////////////////////////////////////////////////////////////////
+                                                                            //
+    printf("\n\n\n Twoja macierz wyglada tak: \n\n");                       //
+    for(i = 0; i < rozmiar; i++){                                           //
+        printf("  %c", argumenty[i]);}                                      //
+                                                                            //
+    for(i = 0; i < rozmiar; i++){                                           //  Wyswietlanie Macierzy
+        printf("\n ");                                                      //
+        for(j = 0; j < rozmiar; j++){                                       //
+            printf("[%d]", (int)(macierz[i][j]));}                          //
+        printf(" = [%d]", (int)(rownosci[i]));}                             //
+                                                                            //
+//////////////////////////////////////////////////////////////////////////////
+                                                                            //
+    for(i = 0; i < 50; i++){ // << liczba iteracji                          //
+        for(j = 0; j < rozmiar; j++){                                       //
+            d = rownosci[j];                                                //
+            for(k = 0; k < rozmiar; k++){                                   //  Metoda Gaussa Seidela
+                if(j != k){                                                 //
+                    d -= macierz[j][k] * x[k];}                             //
+            x[j] = d / macierz[j][j];}}}                                    //
+                                                                            //
+//////////////////////////////////////////////////////////////////////////////
+                                                                            //
+    printf("\n\n wyniki tej macierzy to: \n\n");                            //
+    for(i = 0; i < rozmiar; i++)                                            //  Wyswietlanie Whnikow
+        printf(" %c = %lf\n", argumenty[i],x[i]);                           //
+                                                                            //
+//////////////////////////////////////////////////////////////////////////////
+
+    return 0;
+}
